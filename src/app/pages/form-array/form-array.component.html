@@ -1,0 +1,105 @@
+<form [formGroup]="planPackagesform1">
+
+  <div formArrayName="services">
+
+    <div *ngFor="let service of services1().controls; let ti=index">
+
+      <div [formGroupName]="ti">
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group mb-4">
+
+                  <label for="serviceTypeId"> Select Service: </label>
+                  <select class="form-control"   id="serviceTypeId" type="number" name="serviceTypeId"
+                    formControlName="serviceTypeId"  [(ngModel)]="serviceTypeId12" (ngModelChange)="selected($event, ti)"    >
+                    <option disabled selected value="">Select Service </option>
+
+
+                    <option *ngFor="let service of services" [value]="service.id" >{{service.name}}</option>
+                  </select>
+
+
+
+                </div>
+              </div>
+              <div class="col-md-4 mt-8 d-flex mt-4">
+                <div class="mr-4">
+                  <button type="button" class="btn btn-outline-primary " (click)="addPlanPackages(ti)"> <i
+                      class="mdi mdi-plus mr-2 "></i> Add Package</button>
+                </div>
+                <div class=" ml-0 ml-2">
+                  <button type="button" class="btn btn-outline-primary " (click)="removeServices(ti)"> <i
+                      class="ri-delete-bin-6-line text-danger mr-2 "></i> Delete Package</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div formArrayName="subscriptionPlanPackages">
+          <div *ngFor="let batch of subscriptionPlanPackages(ti).controls; let bi=index">
+            <div [formGroupName]="bi">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="row ">
+                        <div class="col-md-3">
+                          <label for="billing-email-address">From:</label>
+                          <input type="text" class="form-control" id="" placeholder="Enter Action Text"
+                            formControlName="from" style="display: flex; margin-bottom: 10px;">
+                        </div>
+                        <div class="col-md-3">
+                          <label for="billing-email-address">To:</label>
+                          <input type="text" class="form-control" id="" placeholder="Enter Action Text"
+                            formControlName="to" style="display: flex; margin-bottom: 10px;">
+                        </div>
+                        <div class="col-md-3">
+                          <label for="billing-email-address">Message Price:</label>
+                          <input type="text" class="form-control" id="" placeholder="Enter Meessge Price"
+                            formControlName="messagePrice" style="display: flex; margin-bottom: 10px;">
+
+                        </div>
+                        <div class="col-md-3">
+                          <label for="billing-email-address">Button Price:</label>
+                          <input type="text" class="form-control" id="" placeholder="Enter Button Price"
+                            formControlName="buttonPrice" style="display: flex; margin-bottom: 10px;">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="col-md-1 mt-md-4">
+                        <button type="button" class="btn font-size-18 text-danger " (click)="removePlanPackages(ti,bi)"
+                          style="margin: auto;  ">
+                          <i class="ri-delete-bin-6-line font-size-20"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-md-4 mt-8 float-md-right">
+      <div class="search-box w-100">
+        <div class="position-relative">
+          <button type="button" class="btn btn-outline-primary w-xs" (click)="addServices1()"> <i
+              class="mdi mdi-plus mr-2 "></i> Add Service</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
